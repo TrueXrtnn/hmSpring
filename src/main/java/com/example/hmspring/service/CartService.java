@@ -1,23 +1,23 @@
 package com.example.hmspring.service;
 
 import org.springframework.stereotype.Service;
-import org.springframework.web.context.annotation.SessionScope;
 
 import java.util.Collections;
 import java.util.Set;
 
 @Service
-@SessionScope
 public class CartService {
-    private final Set<Integer> items;
+    private final Basket basket;
 
-    public CartService(Set<Integer> items) {
-        this.items = items;
+
+    public CartService(Basket basket) {
+        this.basket = basket;
+
     }
     public void add(Set<Integer> ids){
-        items.addAll(ids);
+        basket.setItems(ids);
     }
     public Set<Integer> get(){
-        return Collections.unmodifiableSet(items);
+        return Collections.unmodifiableSet(basket.getItems());
     }
 }
